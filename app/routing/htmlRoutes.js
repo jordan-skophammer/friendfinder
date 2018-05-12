@@ -6,8 +6,8 @@ module.exports = function(app) {
     // In each of the below cases the user is shown an HTML page of content
     // ---------------------------------------------------------------------------
   
-    app.get("/servey", function(req, res) {
-      res.sendFile(path.join(__dirname, "../public/servey.html"));
+    app.get("/survey", function(req, res) {
+      res.sendFile(path.join(__dirname, "../public/survey.html"));
     });
   
     app.get("*", function(req, res) {

@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	<title>Friend Finder Survey</title>
@@ -140,7 +141,64 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	
+	</div>	
 </body>
+
+<script type="text/javascript">
+
+// In this code below we create the Front-end JavaScript which "POSTS" our form data to our express server.
+// In essence, when the user hits submit, jQuery grabs all of the fields then sends a post request to our api
+// Our api recognizes the route (/api/tables)... and then runs the associated code (found in api-routes.js).
+// In this case the associated code "saves" the data to the table-data.js file or waitinglist-data.js file
+
+$("#submit-survey").on("click", function(event) {
+
+  event.preventDefault();
+
+  // Here we grab the form elements
+  var newFriend = {
+
+	q1: parseInt($("#q1-answer").val().trim(), 10),
+	q2: parseInt($("#q2-answer").val().trim(), 10),
+	q3: parseInt($("#q3-answer").val().trim(), 10),
+	q4: parseInt($("#q4-answer").val().trim(), 10),
+	q5: parseInt($("#q5-answer").val().trim(), 10),
+	q6: parseInt($("#q6-answer").val().trim(), 10),
+	q7: parseInt($("#q7-answer").val().trim(), 10),
+	q8: parseInt($("#q8-answer").val().trim(), 10),
+	q9: parseInt($("#q9-answer").val().trim(), 10),
+	q10: parseInt($("#q10-answer").val().trim(), 10)
+  };
+
+  console.log(newFriend);
+
+  // This line is the magic. It"s very similar to the standard ajax function we used.
+  // Essentially we give it a URL, we give it the object we want to send, then we have a "callback".
+  // The callback is the response of the server. In our case, we set up code in api-routes that "returns" true or false
+  // depending on if a tables is available or not.
+
+  $.post("/api/friends", newFriend, function(data) {
+
+	  // If a table is available... tell user they are booked.
+	  if (data) {
+		alert("Yay! You are officially booked!");
+	  }
+
+	  // If a table is available... tell user they on the waiting list.
+	  else {
+		alert("Sorry you are on the wait list");
+	  }
+
+	  // Clear the form when submitting
+	//   $("#reserve-name").val("");
+	//   $("#reserve-phone").val("");
+	//   $("#reserve-email").val("");
+	//   $("#reserve-unique-id").val("");
+
+	});
+
+});
+
+</script>
+</script>
 </html>	
