@@ -13,7 +13,8 @@ var friendsArray = [
         8,
         9,
         10
-      ]
+      ],
+      totalScore: 55
     }
   ];
 

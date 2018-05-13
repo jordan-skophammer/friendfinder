@@ -24,7 +24,8 @@ module.exports = function(app) {
 
     var surveySum = surveyScoreParse.reduce(add, 0)
 
-    console.log(surveySum)
+    req.body.totalScore = surveySum;
+    console.log(friends)
   });
 
 };
