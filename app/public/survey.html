@@ -24,11 +24,11 @@
 				<form>
 					<div class="form-group">
 						<label for="name-input"><h3>Name (Required)</h3></label>
-						<input type="text" class="form-control" id="name-input">
+						<input type="text" class="form-control" id="name-input" required="true">
 					</div>
 					<div class="form-group">
 						<label for="photo-image"><h3>Link to Photo Image (Required)</h3></label>
-						<input type="text" class="form-control" id="photo-image">
+						<input type="text" class="form-control" id="photo-image" required="true">
 					</div>
 				</form>
 		</div>
@@ -37,7 +37,7 @@
 					<form>
 						<h2>Question 1</h2>
 						<h3>You are almost never late for your appointments.</h3>
-						<select class="selectpicker" id="q1-answer">
+						<select class="selectpicker" id="q1-answer" type="number">
 							<option>1</option>
 							<option>2</option>
 							<option>3</option>
@@ -47,7 +47,7 @@
 						<br>
 						<h2>Question 2</h2>
 						<h3>You like to be engaged in an active and fast-paced job.</h3>
-						<select class="seletpicker" id="q2-answer">
+						<select class="seletpicker" id="q2-answer" type="number">
 							<option>1</option>
 							<option>2</option>
 							<option>3</option>
@@ -57,7 +57,7 @@
 						<br>
 						<h2>Question 3</h2>
 						<h3>You enjoy having a wide circle of acquaintances.</h3>
-						<select class="seletpicker" id="q3-answer">
+						<select class="seletpicker" id="q3-answer" type="number">
 							<option>1</option>
 							<option>2</option>
 							<option>3</option>
@@ -67,7 +67,7 @@
 						<br>
 						<h2>Question 4</h2>
 						<h3>You feel involved when watching TV soaps.</h3>
-						<select class="seletpicker" id="q4-answer">
+						<select class="seletpicker" id="q4-answer" type="number">
 							<option>1</option>
 							<option>2</option>
 							<option>3</option>
@@ -77,7 +77,7 @@
 						<br>
 						<h2>Question 5</h2>
 						<h3>You are usually the first to react to a sudden event: the telephone ringing or unexpected question.</h3>
-						<select class="seletpicker" id="q5-answer">
+						<select class="seletpicker" id="q5-answer" type="number">
 							<option>1</option>
 							<option>2</option>
 							<option>3</option>
@@ -90,7 +90,7 @@
 					<form>
 						<h2>Question 6</h2>
 						<h3>You feel that the world is founded on compassion.</h3>
-						<select class="seletpicker" id="q6-answer">
+						<select class="seletpicker" id="q6-answer" type="number">
 							<option>1</option>
 							<option>2</option>
 							<option>3</option>
@@ -100,7 +100,7 @@
 						<br>
 						<h2>Question 7</h2>
 						<h3>It is difficult to get you excited.</h3>
-						<select class="seletpicker" id="q7-answer">
+						<select class="seletpicker" id="q7-answer" type="number">
 							<option>1</option>
 							<option>2</option>
 							<option>3</option>
@@ -110,7 +110,7 @@
 						<br>
 						<h2>Question 8</h2>
 						<h3>You often think about humankind and its destiny.</h3>
-						<select class="seletpicker" id="q8-answer">
+						<select class="seletpicker" id="q8-answer" type="number">
 							<option>1</option>
 							<option>2</option>
 							<option>3</option>
@@ -120,7 +120,7 @@
 						<br>
 						<h2>Question 9</h2>
 						<h3>You prefer to act immediately rather than speculate about various options.</h3>
-						<select class="seletpicker" id="q9-answer">
+						<select class="seletpicker" id="q9-answer" type="number">
 							<option>1</option>
 							<option>2</option>
 							<option>3</option>
@@ -130,7 +130,7 @@
 						<br>
 						<h2>Question 10</h2>
 						<h3>You spend your leisure time actively socializing with a group of people, attending parties, shopping, etc.</h3>
-						<select class="seletpicker" id="q10-answer">
+						<select class="seletpicker" id="q10-answer" type="number">
 							<option>1</option>
 							<option>2</option>
 							<option>3</option>
@@ -155,25 +155,24 @@
 	$("#submit-survey").on("click", function(event) {
 
 		event.preventDefault();
-
 	
 		var newFriend = {
 
 		name: $("#name-input").val().trim(),
 		photo: $("#photo-image").val().trim(),
-		q1: parseInt($("#q1-answer").val()),
-		q2: parseInt($("#q2-answer").val()),
-		q3: parseInt($("#q3-answer").val()),
-		q4: parseInt($("#q4-answer").val()),
-		q5: parseInt($("#q5-answer").val()),
-		q6: parseInt($("#q6-answer").val()),
-		q7: parseInt($("#q7-answer").val()),
-		q8: parseInt($("#q8-answer").val()),
-		q9: parseInt($("#q9-answer").val()),
-		q10: parseInt($("#q10-answer").val())
+		scores: [
+			$("#q1-answer").val(),
+			$("#q2-answer").val(),
+			$("#q3-answer").val(),
+			$("#q4-answer").val(),
+			$("#q5-answer").val(),
+			$("#q6-answer").val(),
+			$("#q7-answer").val(),
+			$("#q8-answer").val(),
+			$("#q9-answer").val(),
+			$("#q10-answer").val()
+		] 
 	};
-
-		console.log(newFriend);
 
 		$.post("/api/friends", newFriend, function(data) {
 
@@ -186,6 +185,19 @@
 			else {
 			alert("Sorry you are on the wait list");
 			}
+
+			$("#name-input").val("")
+			$("#photo-image").val("")
+			$("#q1-answer").val("1") 
+			$("#q2-answer").val("1") 
+			$("#q3-answer").val("1") 
+			$("#q4-answer").val("1") 
+			$("#q5-answer").val("1") 
+			$("#q6-answer").val("1") 
+			$("#q7-answer").val("1") 
+			$("#q8-answer").val("1") 
+			$("#q9-answer").val("1") 
+			$("#q10-answer").val("1")			
 			
 		});
 
