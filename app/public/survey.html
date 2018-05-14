@@ -143,7 +143,27 @@
 			<div class="row">
 				<div class="col-md-12">
 					<br>
-					<button class="btn btn-primary submit btn-lg" id="submit-survey" type="submit">Submit</button>
+					<button class="btn btn-primary submit btn-lg" data-toggle="modal" data-target="#exampleModal" id="submit-survey" type="submit">Submit</button>
+
+					<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+							<div class="modal-header">
+								<h1 class="modal-title" id="exampleModalLabel">YOU HAVE A FRIEND MATCH!</h1>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body align-center">
+								<h1 id="friend-name"></h1>
+								<p id="friend-photo"></p>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -197,6 +217,9 @@
 			}).then(function(response) {
 				
 			console.log(response[0]);
+
+			$("#friend-name").text(response[0].name)
+			$("#friend-photo").html("<img src='" + response[0].photo + "' style='width: 250px; height: 250px;'>")
 		});
 		
 
