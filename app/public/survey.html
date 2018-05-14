@@ -176,16 +176,6 @@
 
 		$.post("/api/friends", newFriend, function(data) {
 
-			
-			if (data) {
-			alert("Yay! You are officially booked!");
-			}
-
-			
-			else {
-			alert("Sorry you are on the wait list");
-			}
-
 			$("#name-input").val("")
 			$("#photo-image").val("")
 			$("#q1-answer").val("1") 
@@ -200,6 +190,15 @@
 			$("#q10-answer").val("1")			
 			
 		});
+
+		$.ajax({
+			url: "/api/friends",
+			method: "GET"
+			}).then(function(response) {
+				
+			console.log(response[0]);
+		});
+		
 
 	});
 </script>

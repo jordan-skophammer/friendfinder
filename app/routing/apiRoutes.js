@@ -21,7 +21,7 @@ module.exports = function(app) {
     var surveySum = surveyScoreParse.reduce(add, 0)
 
     req.body.totalScore = surveySum;
-    
+    // 
     for (let i = 0; i< friends.length; i++) {
       var compareFriends = Math.abs(surveySum - friends[i].totalScore)
 
@@ -32,7 +32,7 @@ module.exports = function(app) {
       })
     }
     
-    console.log(friends)
+    // console.log(friends)
 
     friends.push(req.body);
     res.json(true);
