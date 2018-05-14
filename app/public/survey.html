@@ -191,23 +191,23 @@
 			$("#q8-answer").val(),
 			$("#q9-answer").val(),
 			$("#q10-answer").val()
-		] 
+		]
 	};
 
 		$.post("/api/friends", newFriend, function(data) {
 
-			$("#name-input").val("")
-			$("#photo-image").val("")
-			$("#q1-answer").val("1") 
-			$("#q2-answer").val("1") 
-			$("#q3-answer").val("1") 
-			$("#q4-answer").val("1") 
-			$("#q5-answer").val("1") 
-			$("#q6-answer").val("1") 
-			$("#q7-answer").val("1") 
-			$("#q8-answer").val("1") 
-			$("#q9-answer").val("1") 
-			$("#q10-answer").val("1")			
+			$("#name-input").val("");
+			$("#photo-image").val("");
+			$("#q1-answer").val("1"); 
+			$("#q2-answer").val("1"); 
+			$("#q3-answer").val("1"); 
+			$("#q4-answer").val("1"); 
+			$("#q5-answer").val("1"); 
+			$("#q6-answer").val("1"); 
+			$("#q7-answer").val("1"); 
+			$("#q8-answer").val("1"); 
+			$("#q9-answer").val("1"); 
+			$("#q10-answer").val("1");			
 			
 		});
 
@@ -218,11 +218,11 @@
 				
 			console.log(response[0]);
 
-			$("#friend-name").text(response[0].name)
-			$("#friend-photo").html("<img src='" + response[0].photo + "' style='width: 250px; height: 250px;'>")
+			//Appends the friend with the smallest score difference to the user.
+			$("#friend-name").text(response[0].name);
+			$("#friend-photo").html("<img src='" + response[0].photo + "' style='width: 250px; height: 250px;'>");
 		});
 		
-
 	});
 </script>
 </script>
